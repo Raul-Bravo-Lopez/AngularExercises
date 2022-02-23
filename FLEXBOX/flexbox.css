@@ -1,0 +1,22 @@
+.flexbox{
+
+display: flex;
+flex-direction: row;
+background-color: DodgerBlue;
+height: 200px;
+justify-content: space-evenly;
+
+}
+
+.box{
+
+    width: 300px;
+  margin: 10px;
+  background-color: black;
+  
+  line-height: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+}
