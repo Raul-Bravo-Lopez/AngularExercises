@@ -5,15 +5,13 @@ export class Product{
 "code":String;
 "price":number;
 "units":number;
-"total":number;
 
-constructor(name: String, code: String, price: number, units:number, total:number){
+constructor(name: String, code: String, price: number, units:number){
 
 this.name=name;
 this.code=code;
 this.price=price;
 this.units=units;
-this.total=total;
 
 }
 

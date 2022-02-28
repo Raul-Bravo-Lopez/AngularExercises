@@ -10,15 +10,17 @@ export class AppComponent {
   title = 'angular-product-exercise';
 
   products: Product[]=
-  [{code:"325ifg3", name:"Pack 2 Palmeritas", price:1.80, units:2, total:0}];
+  [{code:"325ifg3", name:"Pack 2 Palmeritas", price:1.80, units:2}];
 
 getPrice(){
 
+  let totalGlobal=0;
+
   for(let i=0;i<this.products.length;i++){
 
-    this.products[i].total=this.products[i].price*this.products[i].units;
-    console.log(this.products[i].total);
+    totalGlobal+=(this.products[i].price*this.products[i].units);
   }
+  console.log("El total es: "+totalGlobal);
 
 }
 
