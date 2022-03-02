@@ -42,8 +42,7 @@ function getTareas() {
     let nombreTarea = templateTarea.getElementsByClassName("nombreTarea");
     nombreTarea[0].textContent = listaTareas[i].Nombre;
 
-    let descripcionTarea =
-      templateTarea.getElementsByClassName("descripcionTarea");
+    let descripcionTarea = templateTarea.getElementsByClassName("descripcionTarea");
     descripcionTarea[0].textContent = listaTareas[i].Descripcion;
 
     let prioridadTarea = templateTarea.getElementsByClassName("prioridadTarea");
@@ -58,6 +57,19 @@ function getTareas() {
     } else if (listaTareas[i].Estado == "deleted") {
       tareasDeleted.appendChild(templateTarea);
     }
+  }
+
+  for (let i = 0; i < listaTareas.length; i++) {
+    let templateTarea = tareaAClonar.cloneNode(true);
+
+    let nombreTarea = templateTarea.getElementsByClassName("nombreTarea");
+    nombreTarea[0].textContent = listaTareas[i].Nombre;
+
+    let descripcionTarea = templateTarea.getElementsByClassName("descripcionTarea");
+    descripcionTarea[0].textContent = listaTareas[i].Descripcion;
+
+    let prioridadTarea = templateTarea.getElementsByClassName("prioridadTarea");
+    prioridadTarea[0].textContent = listaTareas[i].Prioridad+" "+listaTareas[i].Estado;
 
     todasTareas.appendChild(templateTarea.cloneNode(true));
   }
