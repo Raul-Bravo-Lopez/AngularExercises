@@ -63,36 +63,66 @@ function getTareas() {
 
 function vaciarListaGeneralTareas() {
 
+  const confirmacion=prompt("Introduce Si")
+
+  if(confirmacion=="Si"){
+
     vaciarListaCreatedTareas();
     vaciarListaDeletedTareas();
     vaciarListaDoingTareas();
     vaciarListaDoneTareas();
+
+  } else{
+
+    alert("No introduciste \"Si\" ")
+    
+  }
+
+
 }
 
 function vaciarListaCreatedTareas() {
+
+  const confirmacion=prompt("Introduce Si")
+
+  if(confirmacion=="Si"){
+
     tareasCreated = document.getElementById("tareasCreated");
     todasTareas = document.getElementById("todasTareas");
-
+  
     for(let i=0;i<todasTareas.childElementCount;i++){
-
+      
         for(let j=0;j<tareasCreated.childElementCount;j++){
-
+  
             if(todasTareas.childNodes[i].isEqualNode(tareasCreated.childNodes[j])){
-            
+  
+                listaTareas.splice(i,1)
                 todasTareas.removeChild(todasTareas.childNodes[i])
                 tareasCreated.removeChild(tareasCreated.childNodes[j])
+                
                 i--;
                 break;
                 
             } 
-
+  
         }
-
+        
     }
+
+  } else{
+
+    alert("No introduciste \"Si\" ");
+
+  }
 
 }
 
 function vaciarListaDoingTareas() {
+
+  const confirmacion=prompt("Introduce Si")
+
+  if(confirmacion=="Si"){
+
     tareasDoing = document.getElementById("tareasDoing");
     todasTareas = document.getElementById("todasTareas");
 
@@ -102,6 +132,7 @@ function vaciarListaDoingTareas() {
 
             if(todasTareas.childNodes[i].isEqualNode(tareasDoing.childNodes[j])){
             
+                listaTareas.splice(i,1)
                 todasTareas.removeChild(todasTareas.childNodes[i])
                 tareasDoing.removeChild(tareasDoing.childNodes[j])
                 i--;
@@ -113,32 +144,55 @@ function vaciarListaDoingTareas() {
 
     }
 
+  } else{
+
+    alert("No introduciste \"Si\" ");
+
+  }
+
 }
 
 function vaciarListaDoneTareas() {
-    tareasDone = document.getElementById("tareasDone");
-    todasTareas = document.getElementById("todasTareas");
+
+  const confirmacion=prompt("Introduce Si")
+
+  if(confirmacion=="Si"){
 
     for(let i=0;i<todasTareas.childElementCount;i++){
 
-        for(let j=0;j<tareasDone.childElementCount;j++){
+      for(let j=0;j<tareasDone.childElementCount;j++){
 
-            if(todasTareas.childNodes[i].isEqualNode(tareasDone.childNodes[j])){
-            
-                todasTareas.removeChild(todasTareas.childNodes[i])
-                tareasDone.removeChild(tareasDone.childNodes[j])
-                i--;
-                break;
-                
-            } 
+          if(todasTareas.childNodes[i].isEqualNode(tareasDone.childNodes[j])){
+          
+              listaTareas.splice(i,1)
+              todasTareas.removeChild(todasTareas.childNodes[i])
+              tareasDone.removeChild(tareasDone.childNodes[j])
+              i--;
+              break;
+              
+          } 
 
-        }
+      }
 
-    }
+  }
+
+  } else{
+
+    alert("No introduciste \"Si\" ");
+
+  }
+
+    tareasDone = document.getElementById("tareasDone");
+    todasTareas = document.getElementById("todasTareas");
 
 }
 
 function vaciarListaDeletedTareas() {
+
+  const confirmacion=prompt("Introduce Si")
+
+  if(confirmacion=="Si"){
+
     tareasDeleted = document.getElementById("tareasDeleted");
     todasTareas = document.getElementById("todasTareas");
 
@@ -148,6 +202,7 @@ function vaciarListaDeletedTareas() {
 
             if(todasTareas.childNodes[i].isEqualNode(tareasDeleted.childNodes[j])){
             
+                listaTareas.splice(i,1)
                 todasTareas.removeChild(todasTareas.childNodes[i])
                 tareasDeleted.removeChild(tareasDeleted.childNodes[j])
                 i--;
@@ -158,6 +213,115 @@ function vaciarListaDeletedTareas() {
         }
 
     }
+
+  } else{
+
+    alert("No introduciste \"Si\" ");
+
+  }
+  
+
+
+}
+
+function vaciarListaGeneralTareas2() {
+
+  vaciarListaCreatedTareas2();
+  vaciarListaDeletedTareas2();
+  vaciarListaDoingTareas2();
+  vaciarListaDoneTareas2();
+}
+
+function vaciarListaCreatedTareas2() {
+  tareasCreated = document.getElementById("tareasCreated");
+  todasTareas = document.getElementById("todasTareas");
+
+  for(let i=0;i<todasTareas.childElementCount;i++){
+    
+      for(let j=0;j<tareasCreated.childElementCount;j++){
+
+          if(todasTareas.childNodes[i].isEqualNode(tareasCreated.childNodes[j])){
+
+              todasTareas.removeChild(todasTareas.childNodes[i])
+              tareasCreated.removeChild(tareasCreated.childNodes[j])
+              
+              i--;
+              break;
+              
+          } 
+
+      }
+      
+  }
+
+}
+
+function vaciarListaDoingTareas2() {
+  tareasDoing = document.getElementById("tareasDoing");
+  todasTareas = document.getElementById("todasTareas");
+
+  for(let i=0;i<todasTareas.childElementCount;i++){
+
+      for(let j=0;j<tareasDoing.childElementCount;j++){
+
+          if(todasTareas.childNodes[i].isEqualNode(tareasDoing.childNodes[j])){
+          
+              todasTareas.removeChild(todasTareas.childNodes[i])
+              tareasDoing.removeChild(tareasDoing.childNodes[j])
+              i--;
+              break;
+              
+          } 
+
+      }
+
+  }
+
+}
+
+function vaciarListaDoneTareas2() {
+  tareasDone = document.getElementById("tareasDone");
+  todasTareas = document.getElementById("todasTareas");
+
+  for(let i=0;i<todasTareas.childElementCount;i++){
+
+      for(let j=0;j<tareasDone.childElementCount;j++){
+
+          if(todasTareas.childNodes[i].isEqualNode(tareasDone.childNodes[j])){
+          
+              todasTareas.removeChild(todasTareas.childNodes[i])
+              tareasDone.removeChild(tareasDone.childNodes[j])
+              i--;
+              break;
+              
+          } 
+
+      }
+
+  }
+
+}
+
+function vaciarListaDeletedTareas2() {
+  tareasDeleted = document.getElementById("tareasDeleted");
+  todasTareas = document.getElementById("todasTareas");
+
+  for(let i=0;i<todasTareas.childElementCount;i++){
+
+      for(let j=0;j<tareasDeleted.childElementCount;j++){
+
+          if(todasTareas.childNodes[i].isEqualNode(tareasDeleted.childNodes[j])){
+          
+              todasTareas.removeChild(todasTareas.childNodes[i])
+              tareasDeleted.removeChild(tareasDeleted.childNodes[j])
+              i--;
+              break;
+              
+          } 
+
+      }
+
+  }
 
 }
 
@@ -175,96 +339,40 @@ function anadirTarea() {
     alert("Introduce una descripción para la tarea..");
   } else {
 
+    listaTareas.push(new Tarea(nombre.value,descripcion.value,prioridadValue,estadoValue));
+    console.log(listaTareas)
+
+    vaciarListaGeneralTareas2();
+
     todasTareas = document.getElementById("todasTareas");
     tareasCreated = document.getElementById("tareasCreated");
     tareasDoing = document.getElementById("tareasDoing");
     tareasDone = document.getElementById("tareasDone");
     tareasDeleted = document.getElementById("tareasDeleted");
-
+  
     tareaAClonar = document.getElementById("tareaAClonar");
-
-    let templateTarea = tareaAClonar.cloneNode(true);
-
-    let nombreTarea = templateTarea.getElementsByClassName("nombreTarea");
-    nombreTarea[0].textContent = nombre.value;
-
-    let descripcionTarea =
-    templateTarea.getElementsByClassName("descripcionTarea");
-    descripcionTarea[0].textContent = descripcion.value;
-
-    let prioridadTarea = templateTarea.getElementsByClassName("prioridadTarea");
-    prioridadTarea[0].textContent = prioridadValue;
-
-    if(estadoValue=="Created"){
-
-        tareasCreated.appendChild(templateTarea)
-
-    } else if(estadoValue=="Doing"){
-
-        tareasDoing.appendChild(templateTarea)
-
-    } else if(estadoValue=="Done"){
-
-        tareasDone.appendChild(templateTarea)
-
-    } else if(estadoValue=="Deleted"){
-
-        tareasDeleted.appendChild(templateTarea)
-
-    }
-
-    todasTareas.appendChild(templateTarea.cloneNode(true))
-
+  
+    vaciarListaGeneralTareas2();
+    getTareas();
   }
 }
 
 function organizarPrioridad(){
 
-    vaciarListaGeneralTareas();
+      for (let i = 0; i < listaTareas.length - 1; i++) {
+          for (let j = 0; j < listaTareas.length - 1; j++) {
+              if (listaTareas[j + 1].Prioridad > listaTareas[j].Prioridad) {
+                  let aux = listaTareas[j + 1];
+                  listaTareas[j + 1] = listaTareas[j];
+                  listaTareas[j] = aux;
+              }
+          }
+      }
 
-    let arrayPrioridad=[];
+      console.log(listaTareas)
 
-  for (let i = 0; i < listaTareas.length; i++) {
-      arrayPrioridad.push(listaTareas[i].Prioridad);
-  }
-
-  arrayPrioridad.sort(function(a, b){return b-a});
-
-    todasTareas = document.getElementById("todasTareas");
-  tareasCreated = document.getElementById("tareasCreated");
-  tareasDoing = document.getElementById("tareasDoing");
-  tareasDone = document.getElementById("tareasDone");
-  tareasDeleted = document.getElementById("tareasDeleted");
-
-  tareaAClonar = document.getElementById("tareaAClonar");
-
-  for (let i = 0; i < listaTareas.length; i++) {
-    let templateTarea = tareaAClonar.cloneNode(true);
-
-    let nombreTarea = templateTarea.getElementsByClassName("nombreTarea");
-    nombreTarea[0].textContent = listaTareas[i].Nombre;
-
-    let descripcionTarea =
-      templateTarea.getElementsByClassName("descripcionTarea");
-    descripcionTarea[0].textContent = listaTareas[i].Descripcion;
-
-    let prioridadTarea = templateTarea.getElementsByClassName("prioridadTarea");
-    prioridadTarea[0].textContent = listaTareas[i].Prioridad;
-
-    if (listaTareas[i].Estado == "created") {
-      tareasCreated.appendChild(templateTarea);
-    } else if (listaTareas[i].Estado == "doing") {
-      tareasDoing.appendChild(templateTarea);
-    } else if (listaTareas[i].Estado == "done") {
-      tareasDone.appendChild(templateTarea);
-    } else if (listaTareas[i].Estado == "deleted") {
-      tareasDeleted.appendChild(templateTarea);
-    }
-
-    todasTareas.appendChild(templateTarea.cloneNode(true));
-  }
-
- 
+    vaciarListaGeneralTareas2();
+    getTareas();
 
 }
 
