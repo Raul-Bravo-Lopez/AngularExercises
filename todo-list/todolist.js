@@ -62,29 +62,14 @@ function getTareas() {
 
 function vaciarListaGeneralTareas() {
 
-  const confirmacion=prompt("Introduce Si")
-
-  if(confirmacion=="Si"){
-
     vaciarListaCreatedTareas();
     vaciarListaDeletedTareas();
     vaciarListaDoingTareas();
     vaciarListaDoneTareas();
 
-  } else{
-
-    alert("No introduciste \"Si\" ")
-    
-  }
-
-
 }
 
 function vaciarListaCreatedTareas() {
-
-  const confirmacion=prompt("Introduce Si")
-
-  if(confirmacion=="Si"){
 
     tareasCreated = document.getElementById("tareasCreated");
     todasTareas = document.getElementById("todasTareas");
@@ -108,19 +93,9 @@ function vaciarListaCreatedTareas() {
         
     }
 
-  } else{
-
-    alert("No introduciste \"Si\" ");
-
-  }
-
 }
 
 function vaciarListaDoingTareas() {
-
-  const confirmacion=prompt("Introduce Si")
-
-  if(confirmacion=="Si"){
 
     tareasDoing = document.getElementById("tareasDoing");
     todasTareas = document.getElementById("todasTareas");
@@ -143,19 +118,11 @@ function vaciarListaDoingTareas() {
 
     }
 
-  } else{
-
-    alert("No introduciste \"Si\" ");
-
-  }
-
 }
 
 function vaciarListaDoneTareas() {
-
-  const confirmacion=prompt("Introduce Si")
-
-  if(confirmacion=="Si"){
+  tareasDone = document.getElementById("tareasDone");
+  todasTareas = document.getElementById("todasTareas");
 
     for(let i=0;i<todasTareas.childElementCount;i++){
 
@@ -175,22 +142,9 @@ function vaciarListaDoneTareas() {
 
   }
 
-  } else{
-
-    alert("No introduciste \"Si\" ");
-
-  }
-
-    tareasDone = document.getElementById("tareasDone");
-    todasTareas = document.getElementById("todasTareas");
-
 }
 
 function vaciarListaDeletedTareas() {
-
-  const confirmacion=prompt("Introduce Si")
-
-  if(confirmacion=="Si"){
 
     tareasDeleted = document.getElementById("tareasDeleted");
     todasTareas = document.getElementById("todasTareas");
@@ -212,14 +166,6 @@ function vaciarListaDeletedTareas() {
         }
 
     }
-
-  } else{
-
-    alert("No introduciste \"Si\" ");
-
-  }
-  
-
 
 }
 
