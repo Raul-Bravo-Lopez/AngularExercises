@@ -40,8 +40,7 @@ function getTareas() {
     let nombreTarea = templateTarea.getElementsByClassName("nombreTarea");
     nombreTarea[0].textContent = listaTareas[i].Nombre;
 
-    let descripcionTarea =
-      templateTarea.getElementsByClassName("descripcionTarea");
+    let descripcionTarea =templateTarea.getElementsByClassName("descripcionTarea");
     descripcionTarea[0].textContent = listaTareas[i].Descripcion;
 
     let prioridadTarea = templateTarea.getElementsByClassName("prioridadTarea");
@@ -340,17 +339,6 @@ function anadirTarea() {
   } else {
 
     listaTareas.push(new Tarea(nombre.value,descripcion.value,prioridadValue,estadoValue));
-    console.log(listaTareas)
-
-    vaciarListaGeneralTareas2();
-
-    todasTareas = document.getElementById("todasTareas");
-    tareasCreated = document.getElementById("tareasCreated");
-    tareasDoing = document.getElementById("tareasDoing");
-    tareasDone = document.getElementById("tareasDone");
-    tareasDeleted = document.getElementById("tareasDeleted");
-  
-    tareaAClonar = document.getElementById("tareaAClonar");
   
     vaciarListaGeneralTareas2();
     getTareas();
@@ -368,8 +356,6 @@ function organizarPrioridad(){
               }
           }
       }
-
-      console.log(listaTareas)
 
     vaciarListaGeneralTareas2();
     getTareas();

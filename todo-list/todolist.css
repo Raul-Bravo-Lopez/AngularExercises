@@ -13,6 +13,20 @@
     
 }
 
+.flexboxHorizontal2{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+
+textarea{resize: none;
+
+height:150px;
+width:300px;
+
+}
 
 .hidden{
 
