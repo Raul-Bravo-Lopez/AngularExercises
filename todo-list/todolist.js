@@ -16,31 +16,34 @@ let listaTareas = [
   new Tarea("Pascal", "Aprender Pascal", 1, "deleted"),
 ];
 
-let todasTareas;
-let tareasCreated;
-let tareasDoing;
-let tareasDone;
-let tareasDeleted;
+let todasTareas = document.getElementById("todasTareas");
+let tareasCreated = document.getElementById("tareasCreated");
+let tareasDoing = document.getElementById("tareasDoing");
+let tareasDone = document.getElementById("tareasDone");
+let tareasDeleted = document.getElementById("tareasDeleted");
 
-let tareaAClonar;
+let tareaAClonar = document.getElementById("tareaAClonar");
+
+let buttonVaciarTodo = document.getElementById("vaciarTodo");
+let buttonVaciarCreated = document.getElementById("vaciarCreated");
+let buttonVaciarDoing = document.getElementById("vaciarDoing");
+let buttonVaciarDone = document.getElementById("vaciarDone");
+let buttonVaciarDeleted = document.getElementById("vaciarDeleted");
+let buttonOrganizarPrioridad = document.getElementById("organizarPrioridad");
+let buttonAnadir = document.getElementById("anadirTarea");
+
 getTareas();
 
+//Imprimo las vistas
 function getTareas() {
-  todasTareas = document.getElementById("todasTareas");
-  tareasCreated = document.getElementById("tareasCreated");
-  tareasDoing = document.getElementById("tareasDoing");
-  tareasDone = document.getElementById("tareasDone");
-  tareasDeleted = document.getElementById("tareasDeleted");
-
-  tareaAClonar = document.getElementById("tareaAClonar");
-
   for (let i = 0; i < listaTareas.length; i++) {
     let templateTarea = tareaAClonar.cloneNode(true);
 
     let nombreTarea = templateTarea.getElementsByClassName("nombreTarea");
     nombreTarea[0].textContent = listaTareas[i].Nombre;
 
-    let descripcionTarea =templateTarea.getElementsByClassName("descripcionTarea");
+    let descripcionTarea =
+      templateTarea.getElementsByClassName("descripcionTarea");
     descripcionTarea[0].textContent = listaTareas[i].Descripcion;
 
     let prioridadTarea = templateTarea.getElementsByClassName("prioridadTarea");
@@ -60,216 +63,114 @@ function getTareas() {
   }
 }
 
-function vaciarListaGeneralTareas() {
-
-    vaciarListaCreatedTareas();
-    vaciarListaDeletedTareas();
-    vaciarListaDoingTareas();
-    vaciarListaDoneTareas();
-
-}
-
-function vaciarListaCreatedTareas() {
-
-    tareasCreated = document.getElementById("tareasCreated");
-    todasTareas = document.getElementById("todasTareas");
-  
-    for(let i=0;i<todasTareas.childElementCount;i++){
-      
-        for(let j=0;j<tareasCreated.childElementCount;j++){
-  
-            if(todasTareas.childNodes[i].isEqualNode(tareasCreated.childNodes[j])){
-  
-                listaTareas.splice(i,1)
-                todasTareas.removeChild(todasTareas.childNodes[i])
-                tareasCreated.removeChild(tareasCreated.childNodes[j])
-                
-                i--;
-                break;
-                
-            } 
-  
-        }
-        
+//Borra las vistas
+function borrarListas() {
+  for (let i = 0, j = 0; i < todasTareas.childElementCount; i++) {
+    if (tareasCreated.hasChildNodes()) {
+      tareasCreated.removeChild(tareasCreated.childNodes[j]);
     }
 
-}
-
-function vaciarListaDoingTareas() {
-
-    tareasDoing = document.getElementById("tareasDoing");
-    todasTareas = document.getElementById("todasTareas");
-
-    for(let i=0;i<todasTareas.childElementCount;i++){
-
-        for(let j=0;j<tareasDoing.childElementCount;j++){
-
-            if(todasTareas.childNodes[i].isEqualNode(tareasDoing.childNodes[j])){
-            
-                listaTareas.splice(i,1)
-                todasTareas.removeChild(todasTareas.childNodes[i])
-                tareasDoing.removeChild(tareasDoing.childNodes[j])
-                i--;
-                break;
-                
-            } 
-
-        }
-
+    if (tareasDoing.hasChildNodes()) {
+      tareasDoing.removeChild(tareasDoing.childNodes[j]);
     }
 
-}
-
-function vaciarListaDoneTareas() {
-  tareasDone = document.getElementById("tareasDone");
-  todasTareas = document.getElementById("todasTareas");
-
-    for(let i=0;i<todasTareas.childElementCount;i++){
-
-      for(let j=0;j<tareasDone.childElementCount;j++){
-
-          if(todasTareas.childNodes[i].isEqualNode(tareasDone.childNodes[j])){
-          
-              listaTareas.splice(i,1)
-              todasTareas.removeChild(todasTareas.childNodes[i])
-              tareasDone.removeChild(tareasDone.childNodes[j])
-              i--;
-              break;
-              
-          } 
-
-      }
-
-  }
-
-}
-
-function vaciarListaDeletedTareas() {
-
-    tareasDeleted = document.getElementById("tareasDeleted");
-    todasTareas = document.getElementById("todasTareas");
-
-    for(let i=0;i<todasTareas.childElementCount;i++){
-
-        for(let j=0;j<tareasDeleted.childElementCount;j++){
-
-            if(todasTareas.childNodes[i].isEqualNode(tareasDeleted.childNodes[j])){
-            
-                listaTareas.splice(i,1)
-                todasTareas.removeChild(todasTareas.childNodes[i])
-                tareasDeleted.removeChild(tareasDeleted.childNodes[j])
-                i--;
-                break;
-                
-            } 
-
-        }
-
+    if (tareasDone.hasChildNodes()) {
+      tareasDone.removeChild(tareasDone.childNodes[j]);
     }
 
-}
+    if (tareasDeleted.hasChildNodes()) {
+      tareasDeleted.removeChild(tareasDeleted.childNodes[j]);
+    }
 
-function vaciarListaGeneralTareas2() {
-
-  vaciarListaCreatedTareas2();
-  vaciarListaDeletedTareas2();
-  vaciarListaDoingTareas2();
-  vaciarListaDoneTareas2();
-}
-
-function vaciarListaCreatedTareas2() {
-  tareasCreated = document.getElementById("tareasCreated");
-  todasTareas = document.getElementById("todasTareas");
-
-  for(let i=0;i<todasTareas.childElementCount;i++){
-    
-      for(let j=0;j<tareasCreated.childElementCount;j++){
-
-          if(todasTareas.childNodes[i].isEqualNode(tareasCreated.childNodes[j])){
-
-              todasTareas.removeChild(todasTareas.childNodes[i])
-              tareasCreated.removeChild(tareasCreated.childNodes[j])
-              
-              i--;
-              break;
-              
-          } 
-
-      }
-      
+    if (todasTareas.hasChildNodes()) {
+      todasTareas.removeChild(todasTareas.childNodes[i]);
+      i--;
+    }
   }
-
 }
 
-function vaciarListaDoingTareas2() {
-  tareasDoing = document.getElementById("tareasDoing");
-  todasTareas = document.getElementById("todasTareas");
-
-  for(let i=0;i<todasTareas.childElementCount;i++){
-
-      for(let j=0;j<tareasDoing.childElementCount;j++){
-
-          if(todasTareas.childNodes[i].isEqualNode(tareasDoing.childNodes[j])){
-          
-              todasTareas.removeChild(todasTareas.childNodes[i])
-              tareasDoing.removeChild(tareasDoing.childNodes[j])
-              i--;
-              break;
-              
-          } 
-
+//Ademas de borrar las vistas, elimina elemento en el array de objetos
+function vaciarLista(button) {
+  if (button == buttonVaciarTodo) {
+    for (let i = 0, j = 0; i < todasTareas.childElementCount; i++) {
+      if (tareasCreated.hasChildNodes()) {
+        tareasCreated.removeChild(tareasCreated.childNodes[j]);
       }
 
-  }
-
-}
-
-function vaciarListaDoneTareas2() {
-  tareasDone = document.getElementById("tareasDone");
-  todasTareas = document.getElementById("todasTareas");
-
-  for(let i=0;i<todasTareas.childElementCount;i++){
-
-      for(let j=0;j<tareasDone.childElementCount;j++){
-
-          if(todasTareas.childNodes[i].isEqualNode(tareasDone.childNodes[j])){
-          
-              todasTareas.removeChild(todasTareas.childNodes[i])
-              tareasDone.removeChild(tareasDone.childNodes[j])
-              i--;
-              break;
-              
-          } 
-
+      if (tareasDoing.hasChildNodes()) {
+        tareasDoing.removeChild(tareasDoing.childNodes[j]);
       }
 
-  }
-
-}
-
-function vaciarListaDeletedTareas2() {
-  tareasDeleted = document.getElementById("tareasDeleted");
-  todasTareas = document.getElementById("todasTareas");
-
-  for(let i=0;i<todasTareas.childElementCount;i++){
-
-      for(let j=0;j<tareasDeleted.childElementCount;j++){
-
-          if(todasTareas.childNodes[i].isEqualNode(tareasDeleted.childNodes[j])){
-          
-              todasTareas.removeChild(todasTareas.childNodes[i])
-              tareasDeleted.removeChild(tareasDeleted.childNodes[j])
-              i--;
-              break;
-              
-          } 
-
+      if (tareasDone.hasChildNodes()) {
+        tareasDone.removeChild(tareasDone.childNodes[j]);
       }
 
-  }
+      if (tareasDeleted.hasChildNodes()) {
+        tareasDeleted.removeChild(tareasDeleted.childNodes[j]);
+      }
 
+      if (todasTareas.hasChildNodes()) {
+        todasTareas.removeChild(todasTareas.childNodes[i]);
+        listaTareas.splice(i, 1);
+        i--;
+      }
+    }
+  } else if (button == buttonVaciarCreated) {
+    for (let i = 0; i < todasTareas.childElementCount; i++) {
+      for (let j = 0; j < tareasCreated.childElementCount; j++) {
+        if (
+          todasTareas.childNodes[i].isEqualNode(tareasCreated.childNodes[j])
+        ) {
+          listaTareas.splice(i, 1);
+          todasTareas.removeChild(todasTareas.childNodes[i]);
+          tareasCreated.removeChild(tareasCreated.childNodes[j]);
+          i--;
+          break;
+        }
+      }
+    }
+  } else if (button == buttonVaciarDoing) {
+    for (let i = 0; i < todasTareas.childElementCount; i++) {
+      for (let j = 0; j < tareasDoing.childElementCount; j++) {
+        if (todasTareas.childNodes[i].isEqualNode(tareasDoing.childNodes[j])) {
+          listaTareas.splice(i, 1);
+          todasTareas.removeChild(todasTareas.childNodes[i]);
+          tareasDoing.removeChild(tareasDoing.childNodes[j]);
+          i--;
+          break;
+        }
+      }
+    }
+  } else if (button == buttonVaciarDone) {
+    for (let i = 0; i < todasTareas.childElementCount; i++) {
+      for (let j = 0; j < tareasDone.childElementCount; j++) {
+        if (todasTareas.childNodes[i].isEqualNode(tareasDone.childNodes[j])) {
+          listaTareas.splice(i, 1);
+          todasTareas.removeChild(todasTareas.childNodes[i]);
+          tareasDone.removeChild(tareasDone.childNodes[j]);
+          i--;
+          break;
+        }
+      }
+    }
+  } else if (button == buttonVaciarDeleted) {
+    for (let i = 0; i < todasTareas.childElementCount; i++) {
+      for (let j = 0; j < tareasDeleted.childElementCount; j++) {
+        if (
+          todasTareas.childNodes[i].isEqualNode(tareasDeleted.childNodes[j])
+        ) {
+          listaTareas.splice(i, 1);
+          todasTareas.removeChild(todasTareas.childNodes[i]);
+          tareasDeleted.removeChild(tareasDeleted.childNodes[j]);
+          i--;
+          break;
+        }
+      }
+    }
+  }
 }
 
+//Añadimos tareas mediante un formulario
 function anadirTarea() {
   let nombre = document.getElementById("nombreTareaAnadir");
   let descripcion = document.getElementById("descripcionTareaAnadir");
@@ -283,70 +184,63 @@ function anadirTarea() {
   } else if (descripcion.value == "" || descripcion.value == null) {
     alert("Introduce una descripción para la tarea..");
   } else {
+    listaTareas.push(
+      new Tarea(nombre.value, descripcion.value, prioridadValue, estadoValue)
+    );
 
-    listaTareas.push(new Tarea(nombre.value,descripcion.value,prioridadValue,estadoValue));
-  
-    vaciarListaGeneralTareas2();
+    borrarListas();
     getTareas();
   }
 }
 
-function organizarPrioridad(){
-
-      for (let i = 0; i < listaTareas.length - 1; i++) {
-          for (let j = 0; j < listaTareas.length - 1; j++) {
-              if (listaTareas[j + 1].Prioridad > listaTareas[j].Prioridad) {
-                  let aux = listaTareas[j + 1];
-                  listaTareas[j + 1] = listaTareas[j];
-                  listaTareas[j] = aux;
-              }
-          }
+//Organizamos las listas mediante el algoritmo de la burbuja, de manera descendente
+function organizarPrioridad() {
+  for (let i = 0; i < listaTareas.length - 1; i++) {
+    for (let j = 0; j < listaTareas.length - 1; j++) {
+      if (listaTareas[j + 1].Prioridad > listaTareas[j].Prioridad) {
+        let aux = listaTareas[j + 1];
+        listaTareas[j + 1] = listaTareas[j];
+        listaTareas[j] = aux;
       }
+    }
+  }
 
-    vaciarListaGeneralTareas2();
-    getTareas();
-
+  borrarListas();
+  getTareas();
 }
 
-let buttonAnadir = document.getElementById("anadirTarea");
+//Listener, onClick
 buttonAnadir.addEventListener("click", (event) => {
   event.preventDefault();
   anadirTarea();
 });
 
-let buttonVaciarTodo = document.getElementById("vaciarTodo");
-buttonVaciarTodo.addEventListener("click", (event) => {
-  event.preventDefault();
-  vaciarListaGeneralTareas();
-});
-
-let buttonVaciarCreated = document.getElementById("vaciarCreated");
-buttonVaciarCreated.addEventListener("click", (event) => {
-  event.preventDefault();
-  vaciarListaCreatedTareas();
-});
-
-let buttonVaciarDoing = document.getElementById("vaciarDoing");
-buttonVaciarDoing.addEventListener("click", (event) => {
-  event.preventDefault();
-  vaciarListaDoingTareas();
-});
-
-let buttonVaciarDone = document.getElementById("vaciarDone");
-buttonVaciarDone.addEventListener("click", (event) => {
-  event.preventDefault();
-  vaciarListaDoneTareas();
-});
-
-let buttonVaciarDeleted = document.getElementById("vaciarDeleted");
-buttonVaciarDeleted.addEventListener("click", (event) => {
-  event.preventDefault();
-  vaciarListaDeletedTareas();
-});
-
-let buttonOrganizarPrioridad = document.getElementById("organizarPrioridad");
 buttonOrganizarPrioridad.addEventListener("click", (event) => {
   event.preventDefault();
   organizarPrioridad();
 });
 
+buttonVaciarTodo.addEventListener("click", (event) => {
+  event.preventDefault();
+  vaciarLista(buttonVaciarTodo);
+});
+
+buttonVaciarCreated.addEventListener("click", (event) => {
+  event.preventDefault();
+  vaciarLista(buttonVaciarCreated);
+});
+
+buttonVaciarDoing.addEventListener("click", (event) => {
+  event.preventDefault();
+  vaciarLista(buttonVaciarDoing);
+});
+
+buttonVaciarDone.addEventListener("click", (event) => {
+  event.preventDefault();
+  vaciarLista(buttonVaciarDone);
+});
+
+buttonVaciarDeleted.addEventListener("click", (event) => {
+  event.preventDefault();
+  vaciarLista(buttonVaciarDeleted);
+});

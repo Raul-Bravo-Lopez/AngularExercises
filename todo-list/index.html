@@ -1,136 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
-        
-        <title>TODO-LIST</title>
-        <link rel="stylesheet" href="todolist.css">
+<head>
 
-    </head>
-    <body>
+    <title>TODO-LIST</title>
+    <link rel="stylesheet" href="todolist.css">
 
-        <div class="hidden">
+</head>
 
-            <li id="tareaAClonar">
+<body>
 
-                <span class="nombreTarea"></span>
-                <span class="descripcionTarea"></span>
-                <span class="prioridadTarea"></span>
+    <div class="hiddenli">
 
-            </li>
+        <li id="tareaAClonar">
 
+            <span class="nombreTarea"></span>
+            <span class="descripcionTarea"></span>
+            <span class="prioridadTarea"></span>
+
+        </li>
+
+    </div>
+
+    <div class="flexboxVertical">
+
+        <div class="administrador">
+            <p>Administrador de tareas</p>
         </div>
 
-        <div class="flexboxVertical">
+        <div>
 
-            <div class="administrador">
-                <p>Administrador de tareas</p>
-            </div>
+            <form class="flexboxHorizontal2">
+                <p>Nombre de la tarea</p>
+                <input id="nombreTareaAnadir" type="text" placeholder="Escribe el nombre de la tarea">
+
+                <p>Pon una descripción a la tarea</p>
+                <textarea id="descripcionTareaAnadir" placeholder="Escribe la descripcion de la tarea"></textarea>
+
+                <p>Elige la prioridad de la tarea</p>
+                <select id="prioridadTareaAnadir">
+                    <option selected>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+
+                <p>Elige el estado de la tarea</p>
+                <select id="estadoTareaAnadir">
+                    <option selected>created</option>
+                    <option>doing</option>
+                    <option>done</option>
+                    <option>deleted</option>
+                </select>
+                <button id="anadirTarea">Añadir Tarea</button>
+            </form>
+        </div>
+
+        <div class="flexboxHorizontal">
 
             <div>
 
-                <form class="flexboxHorizontal2">
-                    <p>Nombre de la tarea</p>
-                    <input id="nombreTareaAnadir" type="text" placeholder="Escribe el nombre de la tarea">
+                <h2>Lista General</h2>
+                <div>
+                    <ul id="todasTareas"></ul>
+                </div>
 
-                    <p>Pon una descripción a la tarea</p>
-                    <textarea id="descripcionTareaAnadir" placeholder="Escribe la descripcion de la tarea"></textarea>
-
-                    <p>Elige la prioridad de la tarea</p>
-                    <select id="prioridadTareaAnadir">
-                        <option selected>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select>
-
-                    <p>Elige el estado de la tarea</p>
-                    <select id="estadoTareaAnadir">
-                        <option selected>created</option>
-                        <option>doing</option>
-                        <option>done</option>
-                        <option>deleted</option>
-                    </select>
-                    <button id="anadirTarea">Añadir Tarea</button>
-                </form>   
-            </div>
-
-            <div class="flexboxHorizontal">
-
-                    <div>
-                    
-                        <h2>Lista General</h2>
-                        <div>
-                            <ul id="todasTareas"></ul>
-                        </div>   
-                    
-                            <!-- <button id="eliminarTodo">Eliminar tarea</button> -->
-                            <button id="vaciarTodo">Vaciar lista</button>
-                            <!-- <button>Modificar tarea</button> -->
-                            <button id="organizarPrioridad">Organizar por prioridad</button>
-                    
-                    </div>
+                <!-- <button id="eliminarTodo">Eliminar tarea</button> -->
+                <button id="vaciarTodo">Vaciar lista</button>
+                <!-- <button>Modificar tarea</button> -->
+                <button id="organizarPrioridad">Organizar por prioridad</button>
 
             </div>
 
-            <div class="flexboxHorizontal">
-                
-                <div>
-                    
-                    <h2>Created</h2>
-                    <div>
-                        <ul id="tareasCreated"></ul>
-                    </div>   
-                
-                        <!-- <button id="eliminarCreated">Eliminar tarea</button> -->
-                        <button id="vaciarCreated">Vaciar lista</button>
-                        <!-- <button>Modificar tarea</button> -->
-                
-                </div>
-                <div>
-                    
-                    <h2>Doing</h2>
-                    <div>
-                        <ul id="tareasDoing"></ul>
-                    </div>   
-                
-                       <!--  <button id="eliminarDoing">Eliminar tarea</button> -->
-                        <button id="vaciarDoing">Vaciar lista</button>
-                        <!-- <button>Modificar tarea</button> -->
-                
-                </div>
-                <div>
-                    
-                    <h2>Done</h2>
-                    <div>
-                        <ul id="tareasDone"></ul>
-                    </div>   
-                
-                        <!-- <button id="eliminarDone">Eliminar tarea</button> -->
-                        <button id="vaciarDone">Vaciar lista</button>
-                        <!-- <button>Modificar tarea</button> -->
-                
-                </div>
-                <div>
-                    
-                    <h2>Deleted</h2>
-                    <div>
-                        <ul id="tareasDeleted"></ul>
-                    </div>   
-                
-                        <!--     -->
-                        <button id="vaciarDeleted">Vaciar lista</button>
-                        <!-- <button>Modificar tarea</button> -->
-                
-                </div>
-
-            </div>
-    
         </div>
 
-      <script type="text/javascript" src="models/tarea.model.js" defer></script>   
-      <script type="text/javascript" src="todolist.js" defer></script>   
+        <div class="flexboxHorizontal">
 
-    </body>
+            <div>
+
+                <h2>Created</h2>
+                <div>
+                    <ul id="tareasCreated"></ul>
+                </div>
+
+                <!-- <button id="eliminarCreated">Eliminar tarea</button> -->
+                <button id="vaciarCreated">Vaciar lista</button>
+                <!-- <button>Modificar tarea</button> -->
+
+            </div>
+            <div>
+
+                <h2>Doing</h2>
+                <div>
+                    <ul id="tareasDoing"></ul>
+                </div>
+
+                <!--  <button id="eliminarDoing">Eliminar tarea</button> -->
+                <button id="vaciarDoing">Vaciar lista</button>
+                <!-- <button>Modificar tarea</button> -->
+
+            </div>
+            <div>
+
+                <h2>Done</h2>
+                <div>
+                    <ul id="tareasDone"></ul>
+                </div>
+
+                <!-- <button id="eliminarDone">Eliminar tarea</button> -->
+                <button id="vaciarDone">Vaciar lista</button>
+                <!-- <button>Modificar tarea</button> -->
+
+            </div>
+            <div>
+
+                <h2>Deleted</h2>
+                <div>
+                    <ul id="tareasDeleted"></ul>
+                </div>
+
+                <!--     -->
+                <button id="vaciarDeleted">Vaciar lista</button>
+                <!-- <button>Modificar tarea</button> -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="models/tarea.model.js" defer></script>
+    <script type="text/javascript" src="todolist.js" defer></script>
+
+</body>
 
 </html>
