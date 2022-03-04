@@ -1,4 +1,70 @@
-let listaTareas = [
+class Tarea{
+
+  private _nombre:string;
+  private _descripcion:string;
+  private _prioridad:number;
+  private _estado:string;
+
+  constructor(nombre:string, descripcion:string, prioridad:number, estado:string){
+
+      this._nombre=nombre;
+      this._descripcion=descripcion;
+      this._prioridad=prioridad;
+      this._estado=estado;
+
+  }
+
+  get nombre():string{
+
+      return this._nombre;
+
+  }
+
+  get descripcion():string{
+
+      return this._descripcion
+
+  }
+
+  get prioridad():number{
+
+      return this._prioridad;
+
+  }
+
+  get estado():string{
+
+      return this._estado;
+
+  }
+
+  set nombre(nombre:string) {
+
+      this._nombre=nombre;
+
+  }
+
+  set descripcion(descripcion:string) {
+
+      this._descripcion=descripcion;
+
+  }
+
+  set prioridad(prioridad:number) {
+
+      this._prioridad=prioridad;
+
+  }
+
+  set estado(estado:string) {
+
+      this._estado=estado;
+
+  }
+
+}
+
+let Tareas:Tarea[] = [
   new Tarea("JavaScript", "Aprender JavaScript", 2, "created"),
   new Tarea("Java", "Aprender Java", 3, "created"),
   new Tarea("TypeScript", "Aprender TypeScript", 3, "created"),
@@ -16,13 +82,7 @@ let listaTareas = [
   new Tarea("Pascal", "Aprender Pascal", 1, "deleted")
 ];
 
-let todasTareas = document.getElementById("todasTareas");
-let tareasCreated = document.getElementById("tareasCreated");
-let tareasDoing = document.getElementById("tareasDoing");
-let tareasDone = document.getElementById("tareasDone");
-let tareasDeleted = document.getElementById("tareasDeleted");
-
-let tareaAClonar = document.getElementById("tareaAClonar");
+getTareas();
 
 let buttonVaciarTodo = document.getElementById("vaciarTodo");
 let buttonVaciarCreated = document.getElementById("vaciarCreated");
@@ -32,51 +92,67 @@ let buttonVaciarDeleted = document.getElementById("vaciarDeleted");
 let buttonOrganizarPrioridad = document.getElementById("organizarPrioridad");
 let buttonAnadir = document.getElementById("anadirTarea");
 
-getTareas();
-
 //Imprimo las vistas
 function getTareas() {
-  for (let i = 0; i < listaTareas.length; i++) {
-    let templateTarea = tareaAClonar.cloneNode(true);
+  let todasTareas = document.getElementById("todasTareas");
+  let tareasCreated = document.getElementById("tareasCreated");
+  let tareasDoing = document.getElementById("tareasDoing");
+  let tareasDone = document.getElementById("tareasDone");
+  let tareasDeleted = document.getElementById("tareasDeleted");
+
+  for (let i = 0; i < Tareas.length; i++) {
+    let tareaAClonar:HTMLElement = document.getElementById("tareaAClonar");
+
+    let templateTarea:any = tareaAClonar.cloneNode(true);
 
     let nombreTarea = templateTarea.getElementsByClassName("nombreTarea");
-    nombreTarea[0].textContent = listaTareas[i].Nombre;
+    nombreTarea[0].textContent = Tareas[i].nombre;
 
     let descripcionTarea = templateTarea.getElementsByClassName("descripcionTarea");
-    descripcionTarea[0].textContent = listaTareas[i].Descripcion;
+    descripcionTarea[0].textContent = Tareas[i].descripcion;
 
     let prioridadTarea = templateTarea.getElementsByClassName("prioridadTarea");
-    prioridadTarea[0].textContent = listaTareas[i].Prioridad;
+    prioridadTarea[0].textContent = Tareas[i].prioridad.toString();
 
-    if (listaTareas[i].Estado == "created") {
+    if (Tareas[i].estado == "created") {
       tareasCreated.appendChild(templateTarea);
-    } else if (listaTareas[i].Estado == "doing") {
+    } else if (Tareas[i].estado == "doing") {
       tareasDoing.appendChild(templateTarea);
-    } else if (listaTareas[i].Estado == "done") {
+    } else if (Tareas[i].estado == "done") {
       tareasDone.appendChild(templateTarea);
-    } else if (listaTareas[i].Estado == "deleted") {
+    } else if (Tareas[i].estado == "deleted") {
       tareasDeleted.appendChild(templateTarea);
     }
   }
 
-  for (let i = 0; i < listaTareas.length; i++) {
-    let templateTarea = tareaAClonar.cloneNode(true);
+  for (let i = 0; i < Tareas.length; i++) {
 
-    let nombreTarea = templateTarea.getElementsByClassName("nombreTarea");
-    nombreTarea[0].textContent = listaTareas[i].Nombre;
+    let tareaAClonar2:HTMLElement = document.getElementById("tareaAClonar");
 
-    let descripcionTarea = templateTarea.getElementsByClassName("descripcionTarea");
-    descripcionTarea[0].textContent = listaTareas[i].Descripcion;
+    let templateTarea2:any = tareaAClonar2.cloneNode(true);
 
-    let prioridadTarea = templateTarea.getElementsByClassName("prioridadTarea");
-    prioridadTarea[0].textContent = listaTareas[i].Prioridad+" "+listaTareas[i].Estado;
+    let nombreTarea = templateTarea2.getElementsByClassName("nombreTarea");
+    nombreTarea[0].textContent = Tareas[i].nombre;
 
-    todasTareas.appendChild(templateTarea.cloneNode(true));
+    let descripcionTarea = templateTarea2.getElementsByClassName("descripcionTarea");
+    descripcionTarea[0].textContent = Tareas[i].descripcion;
+
+    let prioridadTarea = templateTarea2.getElementsByClassName("prioridadTarea");
+    prioridadTarea[0].textContent = Tareas[i].prioridad+" "+Tareas[i].estado;
+
+    todasTareas.appendChild(templateTarea2);
   }
 }
 
 //Borra las vistas
 function borrarListas() {
+
+  let todasTareas = document.getElementById("todasTareas");
+  let tareasCreated = document.getElementById("tareasCreated");
+  let tareasDoing = document.getElementById("tareasDoing");
+  let tareasDone = document.getElementById("tareasDone");
+  let tareasDeleted = document.getElementById("tareasDeleted");
+
   for (let i = 0, j = 0; i < todasTareas.childElementCount; i++) {
     if (tareasCreated.hasChildNodes()) {
       tareasCreated.removeChild(tareasCreated.childNodes[j]);
@@ -103,6 +179,13 @@ function borrarListas() {
 
 //Ademas de borrar las vistas, elimina elemento en el array de objetos
 function vaciarLista(button) {
+
+let todasTareas = document.getElementById("todasTareas");
+let tareasCreated = document.getElementById("tareasCreated");
+let tareasDoing = document.getElementById("tareasDoing");
+let tareasDone = document.getElementById("tareasDone");
+let tareasDeleted = document.getElementById("tareasDeleted");
+
   if (button == buttonVaciarTodo) {
     for (let i = 0, j = 0; i < todasTareas.childElementCount; i++) {
       if (tareasCreated.hasChildNodes()) {
@@ -123,17 +206,18 @@ function vaciarLista(button) {
 
       if (todasTareas.hasChildNodes()) {
         todasTareas.removeChild(todasTareas.childNodes[i]);
-        listaTareas.splice(i, 1);
+        Tareas.splice(i, 1);
         i--;
       }
     }
   } else if (button == buttonVaciarCreated) {
     for (let i = 0; i < todasTareas.childElementCount; i++) {
       for (let j = 0; j < tareasCreated.childElementCount; j++) {
+        console.log("A")
         if (
           todasTareas.childNodes[i].isEqualNode(tareasCreated.childNodes[j])
         ) {
-          listaTareas.splice(i, 1);
+          Tareas.splice(i, 1);
           todasTareas.removeChild(todasTareas.childNodes[i]);
           tareasCreated.removeChild(tareasCreated.childNodes[j]);
           i--;
@@ -145,7 +229,7 @@ function vaciarLista(button) {
     for (let i = 0; i < todasTareas.childElementCount; i++) {
       for (let j = 0; j < tareasDoing.childElementCount; j++) {
         if (todasTareas.childNodes[i].isEqualNode(tareasDoing.childNodes[j])) {
-          listaTareas.splice(i, 1);
+          Tareas.splice(i, 1);
           todasTareas.removeChild(todasTareas.childNodes[i]);
           tareasDoing.removeChild(tareasDoing.childNodes[j]);
           i--;
@@ -157,7 +241,7 @@ function vaciarLista(button) {
     for (let i = 0; i < todasTareas.childElementCount; i++) {
       for (let j = 0; j < tareasDone.childElementCount; j++) {
         if (todasTareas.childNodes[i].isEqualNode(tareasDone.childNodes[j])) {
-          listaTareas.splice(i, 1);
+          Tareas.splice(i, 1);
           todasTareas.removeChild(todasTareas.childNodes[i]);
           tareasDone.removeChild(tareasDone.childNodes[j]);
           i--;
@@ -171,7 +255,7 @@ function vaciarLista(button) {
         if (
           todasTareas.childNodes[i].isEqualNode(tareasDeleted.childNodes[j])
         ) {
-          listaTareas.splice(i, 1);
+          Tareas.splice(i, 1);
           todasTareas.removeChild(todasTareas.childNodes[i]);
           tareasDeleted.removeChild(tareasDeleted.childNodes[j]);
           i--;
@@ -184,11 +268,11 @@ function vaciarLista(button) {
 
 //Añadimos tareas mediante un formulario
 function anadirTarea() {
-  let nombre = document.getElementById("nombreTareaAnadir");
-  let descripcion = document.getElementById("descripcionTareaAnadir");
-  let prioridad = document.getElementById("prioridadTareaAnadir");
-  let prioridadValue = prioridad.options[prioridad.selectedIndex].value;
-  let estado = document.getElementById("estadoTareaAnadir");
+  let nombre:HTMLInputElement = (document.getElementById("nombreTareaAnadir") as HTMLInputElement);
+  let descripcion:HTMLInputElement = (document.getElementById("descripcionTareaAnadir") as HTMLInputElement);
+  let prioridad:HTMLSelectElement = document.getElementById("prioridadTareaAnadir") as HTMLSelectElement;
+  let prioridadValue: any = prioridad.options[prioridad.selectedIndex].value;
+  let estado:HTMLSelectElement = document.getElementById("estadoTareaAnadir") as HTMLSelectElement;
   let estadoValue = estado.options[estado.selectedIndex].value;
 
   if (nombre.value == "" || nombre.value == null) {
@@ -196,8 +280,8 @@ function anadirTarea() {
   } else if (descripcion.value == "" || descripcion.value == null) {
     alert("Introduce una descripción para la tarea..");
   } else {
-    listaTareas.push(
-      new Tarea(nombre.value, descripcion.value, prioridadValue, estadoValue)
+    Tareas.push(
+      new Tarea(nombre.value, descripcion.value, (prioridadValue as number), estadoValue)
     );
 
     borrarListas();
@@ -207,12 +291,12 @@ function anadirTarea() {
 
 //Organizamos las listas mediante el algoritmo de la burbuja, de manera descendente
 function organizarPrioridad() {
-  for (let i = 0; i < listaTareas.length - 1; i++) {
-    for (let j = 0; j < listaTareas.length - 1; j++) {
-      if (listaTareas[j + 1].Prioridad > listaTareas[j].Prioridad) {
-        let aux = listaTareas[j + 1];
-        listaTareas[j + 1] = listaTareas[j];
-        listaTareas[j] = aux;
+  for (let i = 0; i < Tareas.length - 1; i++) {
+    for (let j = 0; j < Tareas.length - 1; j++) {
+      if (Tareas[j + 1].prioridad > Tareas[j].prioridad) {
+        let aux = Tareas[j + 1];
+        Tareas[j + 1] = Tareas[j];
+        Tareas[j] = aux;
       }
     }
   }
