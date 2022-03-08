@@ -1,4 +1,4 @@
-var uds=1;
+let uds=1;
 
 let botonSumar=document.getElementById("buttonSumar");
 let botonRestar=document.getElementById("buttonRestar");
@@ -52,7 +52,7 @@ function ratonNoEncimaR(){
 function restar() {
 
 
-    if(uds!=0){
+    if(uds>0){
        
         uds--;
         
@@ -65,7 +65,12 @@ function restar() {
 
 function sumar() {
 
+  if(uds<99){
+       
     uds++;
+    
+}
+
     document.getElementById("uds").textContent=uds+" uds.";
 
 }

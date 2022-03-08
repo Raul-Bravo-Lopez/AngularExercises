@@ -1,19 +1,19 @@
 let listaTareas = [
-  new Tarea("JavaScript", "Aprender JavaScript", 2, "created"),
-  new Tarea("Java", "Aprender Java", 3, "created"),
-  new Tarea("TypeScript", "Aprender TypeScript", 3, "created"),
+  new Tarea("JavaScript", "Aprender JavaScript", 2, "Created"),
+  new Tarea("Java", "Aprender Java", 3, "Created"),
+  new Tarea("TypeScript", "Aprender TypeScript", 3, "Created"),
 
-  new Tarea("Angular", "Aprender Angular", 3, "doing"),
-  new Tarea("React.js", "Aprender React.js", 1, "doing"),
-  new Tarea("Vue.js", "Aprender Vue.js", 1, "doing"),
+  new Tarea("Angular", "Aprender Angular", 3, "Doing"),
+  new Tarea("React.js", "Aprender React.js", 1, "Doing"),
+  new Tarea("Vue.js", "Aprender Vue.js", 1, "Doing"),
 
-  new Tarea("Python", "Aprender Python", 4, "done"),
-  new Tarea("C", "Aprender C", 1, "done"),
-  new Tarea("C++", "Aprender C++", 2, "done"),
+  new Tarea("Python", "Aprender Python", 4, "Done"),
+  new Tarea("C", "Aprender C", 1, "Done"),
+  new Tarea("C++", "Aprender C++", 2, "Done"),
 
-  new Tarea("Cyberseguridad", "Aprender cyberseguridad", 3, "deleted"),
-  new Tarea("Scrum", "Aprender Scrum", 4, "deleted"),
-  new Tarea("Pascal", "Aprender Pascal", 1, "deleted")
+  new Tarea("Cyberseguridad", "Aprender cyberseguridad", 3, "Deleted"),
+  new Tarea("Scrum", "Aprender Scrum", 4, "Deleted"),
+  new Tarea("Pascal", "Aprender Pascal", 1, "Deleted")
 ];
 
 let todasTareas = document.getElementById("todasTareas");
@@ -31,13 +31,17 @@ let buttonVaciarDone = document.getElementById("vaciarDone");
 let buttonVaciarDeleted = document.getElementById("vaciarDeleted");
 let buttonOrganizarPrioridad = document.getElementById("organizarPrioridad");
 let buttonAnadir = document.getElementById("anadirTarea");
+let buttonEliminar = document.getElementById("eliminarTodo");
 
 getTareas();
-
 //Imprimo las vistas
 function getTareas() {
   for (let i = 0; i < listaTareas.length; i++) {
     let templateTarea = tareaAClonar.cloneNode(true);
+    let templateTarea2 = tareaAClonar.cloneNode(true);
+
+    let chexboxTarea=templateTarea.getElementsByClassName("checkBoxTarea");
+    chexboxTarea[0].style.display="none";
 
     let nombreTarea = templateTarea.getElementsByClassName("nombreTarea");
     nombreTarea[0].textContent = listaTareas[i].Nombre;
@@ -48,54 +52,56 @@ function getTareas() {
     let prioridadTarea = templateTarea.getElementsByClassName("prioridadTarea");
     prioridadTarea[0].textContent = listaTareas[i].Prioridad;
 
-    if (listaTareas[i].Estado == "created") {
+    let estadoTarea = templateTarea.getElementsByClassName("estadoTarea");
+    estadoTarea[0].style.display="none";
+
+    let nombreTarea2 = templateTarea2.getElementsByClassName("nombreTarea");
+    nombreTarea2[0].textContent = listaTareas[i].Nombre;
+
+    let descripcionTarea2 = templateTarea2.getElementsByClassName("descripcionTarea");
+    descripcionTarea2[0].textContent = listaTareas[i].Descripcion;
+
+    let prioridadTarea2 = templateTarea2.getElementsByClassName("prioridadTarea");
+    prioridadTarea2[0].textContent = listaTareas[i].Prioridad;
+
+    let estadoTarea2 = templateTarea2.getElementsByClassName("estadoTarea");
+    estadoTarea2[0].textContent=listaTareas[i].Estado;
+
+    if (listaTareas[i].Estado == "Created") {
       tareasCreated.appendChild(templateTarea);
-    } else if (listaTareas[i].Estado == "doing") {
+    } else if (listaTareas[i].Estado == "Doing") {
       tareasDoing.appendChild(templateTarea);
-    } else if (listaTareas[i].Estado == "done") {
+    } else if (listaTareas[i].Estado == "Done") {
       tareasDone.appendChild(templateTarea);
-    } else if (listaTareas[i].Estado == "deleted") {
+    } else if (listaTareas[i].Estado == "Deleted") {
       tareasDeleted.appendChild(templateTarea);
     }
+    todasTareas.appendChild(templateTarea2)
   }
-
-  for (let i = 0; i < listaTareas.length; i++) {
-    let templateTarea = tareaAClonar.cloneNode(true);
-
-    let nombreTarea = templateTarea.getElementsByClassName("nombreTarea");
-    nombreTarea[0].textContent = listaTareas[i].Nombre;
-
-    let descripcionTarea = templateTarea.getElementsByClassName("descripcionTarea");
-    descripcionTarea[0].textContent = listaTareas[i].Descripcion;
-
-    let prioridadTarea = templateTarea.getElementsByClassName("prioridadTarea");
-    prioridadTarea[0].textContent = listaTareas[i].Prioridad+" "+listaTareas[i].Estado;
-
-    todasTareas.appendChild(templateTarea.cloneNode(true));
-  }
+    
 }
 
 //Borra las vistas
 function borrarListas() {
-  for (let i = 0, j = 0; i < todasTareas.childElementCount; i++) {
+  for (let i = 0; i < todasTareas.childElementCount; i++) {
     if (tareasCreated.hasChildNodes()) {
-      tareasCreated.removeChild(tareasCreated.childNodes[j]);
+      tareasCreated.removeChild(tareasCreated.childNodes[0]);
     }
 
     if (tareasDoing.hasChildNodes()) {
-      tareasDoing.removeChild(tareasDoing.childNodes[j]);
+      tareasDoing.removeChild(tareasDoing.childNodes[0]);
     }
 
     if (tareasDone.hasChildNodes()) {
-      tareasDone.removeChild(tareasDone.childNodes[j]);
+      tareasDone.removeChild(tareasDone.childNodes[0]);
     }
 
     if (tareasDeleted.hasChildNodes()) {
-      tareasDeleted.removeChild(tareasDeleted.childNodes[j]);
+      tareasDeleted.removeChild(tareasDeleted.childNodes[0]);
     }
 
     if (todasTareas.hasChildNodes()) {
-      todasTareas.removeChild(todasTareas.childNodes[i]);
+      todasTareas.removeChild(todasTareas.childNodes[0]);
       i--;
     }
   }
@@ -129,70 +135,79 @@ function vaciarLista(button) {
     }
   } else if (button == buttonVaciarCreated) {
     for (let i = 0; i < todasTareas.childElementCount; i++) {
-      for (let j = 0; j < tareasCreated.childElementCount; j++) {
         if (
-          todasTareas.childNodes[i].isEqualNode(tareasCreated.childNodes[j])
+          todasTareas.childNodes[i].childNodes[3].isEqualNode(tareasCreated.childNodes[0].childNodes[3])
         ) {
           listaTareas.splice(i, 1);
           todasTareas.removeChild(todasTareas.childNodes[i]);
-          tareasCreated.removeChild(tareasCreated.childNodes[j]);
+          tareasCreated.removeChild(tareasCreated.childNodes[0]);
           i--;
-          break;
-        }
-      }
+        } 
+      
     }
   } else if (button == buttonVaciarDoing) {
     for (let i = 0; i < todasTareas.childElementCount; i++) {
-      for (let j = 0; j < tareasDoing.childElementCount; j++) {
-        if (todasTareas.childNodes[i].isEqualNode(tareasDoing.childNodes[j])) {
-          listaTareas.splice(i, 1);
-          todasTareas.removeChild(todasTareas.childNodes[i]);
-          tareasDoing.removeChild(tareasDoing.childNodes[j]);
-          i--;
-          break;
-        }
+      if (
+        todasTareas.childNodes[i].childNodes[3].isEqualNode(tareasDoing.childNodes[0].childNodes[3])
+      ) {
+        listaTareas.splice(i, 1);
+        todasTareas.removeChild(todasTareas.childNodes[i]);
+        tareasDoing.removeChild(tareasDoing.childNodes[0]);
+        i--;
       }
-    }
+    
+  }
   } else if (button == buttonVaciarDone) {
     for (let i = 0; i < todasTareas.childElementCount; i++) {
-      for (let j = 0; j < tareasDone.childElementCount; j++) {
-        if (todasTareas.childNodes[i].isEqualNode(tareasDone.childNodes[j])) {
-          listaTareas.splice(i, 1);
-          todasTareas.removeChild(todasTareas.childNodes[i]);
-          tareasDone.removeChild(tareasDone.childNodes[j]);
-          i--;
-          break;
-        }
+      
+      if (
+        todasTareas.childNodes[i].childNodes[3].isEqualNode(tareasDone.childNodes[0].childNodes[3])
+      ) {
+        listaTareas.splice(i, 1);
+        todasTareas.removeChild(todasTareas.childNodes[i]);
+        tareasDone.removeChild(tareasDone.childNodes[0]);
+        i--;
       }
-    }
+    
+  }
   } else if (button == buttonVaciarDeleted) {
     for (let i = 0; i < todasTareas.childElementCount; i++) {
-      for (let j = 0; j < tareasDeleted.childElementCount; j++) {
-        if (
-          todasTareas.childNodes[i].isEqualNode(tareasDeleted.childNodes[j])
-        ) {
-          listaTareas.splice(i, 1);
-          todasTareas.removeChild(todasTareas.childNodes[i]);
-          tareasDeleted.removeChild(tareasDeleted.childNodes[j]);
-          i--;
-          break;
-        }
+      debugger
+      if (
+        todasTareas.childNodes[i].childNodes[3].isEqualNode(tareasDeleted.childNodes[0].childNodes[3])
+      ) {
+        listaTareas.splice(i, 1);
+        todasTareas.removeChild(todasTareas.childNodes[i]);
+        tareasDeleted.removeChild(tareasDeleted.childNodes[0]);
+        i--;
       }
-    }
+    
+  }
   }
 }
 
 //Añadimos tareas mediante un formulario
 function anadirTarea() {
+  let aux = false;
   let nombre = document.getElementById("nombreTareaAnadir");
   let descripcion = document.getElementById("descripcionTareaAnadir");
   let prioridad = document.getElementById("prioridadTareaAnadir");
-  let prioridadValue = prioridad.options[prioridad.selectedIndex].value;
+  let prioridadValue=prioridad.options[prioridad.selectedIndex].value;
   let estado = document.getElementById("estadoTareaAnadir");
-  let estadoValue = estado.options[estado.selectedIndex].value;
+  let estadoValue=estado.options[estado.selectedIndex].value;
 
-  if (nombre.value == "" || nombre.value == null) {
-    alert("Introduce un nombre para la tarea..");
+  for(let i=0;i<listaTareas.length;i++){
+
+
+  if(listaTareas[i].Nombre==nombre.value){
+
+    aux=true;
+
+  }
+} if (nombre.value == "" || nombre.value == null) {
+    alert("Introduce un nombre para la tarea...");
+  } else if(aux==true){
+    alert("El nombre elegido ya está en las tareas...");
   } else if (descripcion.value == "" || descripcion.value == null) {
     alert("Introduce una descripción para la tarea..");
   } else {
@@ -200,8 +215,48 @@ function anadirTarea() {
       new Tarea(nombre.value, descripcion.value, prioridadValue, estadoValue)
     );
 
-    borrarListas();
-    getTareas();
+    let templateTarea = tareaAClonar.cloneNode(true);
+    let templateTarea2 = tareaAClonar.cloneNode(true)
+
+    let chexboxTarea=templateTarea.getElementsByClassName("checkBoxTarea");
+    chexboxTarea[0].style.display="none";
+
+    let nombreTarea = templateTarea.getElementsByClassName("nombreTarea");
+    nombreTarea[0].textContent = nombre.value;
+
+    let descripcionTarea = templateTarea.getElementsByClassName("descripcionTarea");
+    descripcionTarea[0].textContent = descripcion.value;
+
+    let prioridadTarea = templateTarea.getElementsByClassName("prioridadTarea");
+    prioridadTarea[0].textContent = prioridadValue;
+
+    let estadoTarea = templateTarea.getElementsByClassName("estadoTarea");
+    estadoTarea[0].style.display="none";
+
+    let nombreTarea2 = templateTarea2.getElementsByClassName("nombreTarea");
+    nombreTarea2[0].textContent = nombre.value;
+
+    let descripcionTarea2 = templateTarea2.getElementsByClassName("descripcionTarea");
+    descripcionTarea2[0].textContent = descripcion.value;
+
+    let prioridadTarea2 = templateTarea2.getElementsByClassName("prioridadTarea");
+    prioridadTarea2[0].textContent = prioridadValue;
+
+    let estadoTarea2 = templateTarea2.getElementsByClassName("estadoTarea");
+    estadoTarea2[0].textContent=estadoValue;
+
+    if (estadoValue == "Created") {
+      tareasCreated.appendChild(templateTarea);
+    } else if (estadoValue == "Doing") {
+      tareasDoing.appendChild(templateTarea);
+    } else if (estadoValue == "Done") {
+      tareasDone.appendChild(templateTarea);
+    } else if (estadoValue == "Deleted") {
+      tareasDeleted.appendChild(templateTarea);
+    }
+
+    todasTareas.appendChild(templateTarea2)
+
   }
 }
 
@@ -221,7 +276,54 @@ function organizarPrioridad() {
   getTareas();
 }
 
-//Listener, onClick
+//Eliminamos tarea por medio de checkbox's
+function eliminarTarea() {
+  debugger
+  for (let i = 0; i < todasTareas.childElementCount; i++) {
+
+    if (todasTareas.childNodes[i].childNodes[1].checked) {
+
+      for(let j=0;j<tareasCreated.childElementCount;j++){
+        
+        if(todasTareas.childNodes[i].childNodes[3].isEqualNode(tareasCreated.childNodes[j].childNodes[3])){
+
+          tareasCreated.removeChild(tareasCreated.childNodes[j]);
+
+        }
+      }
+      for(let j=0;j<tareasDoing.childElementCount;j++){
+
+        if(todasTareas.childNodes[i].childNodes[3].isEqualNode(tareasDoing.childNodes[j].childNodes[3])){
+
+          tareasDoing.removeChild(tareasDoing.childNodes[j]);
+
+        }
+      }
+      for(let j=0;j<tareasDone.childElementCount;j++){
+
+        if(todasTareas.childNodes[i].childNodes[3].isEqualNode(tareasDone.childNodes[j].childNodes[3])){
+
+          tareasDone.removeChild(tareasDone.childNodes[j]);
+
+        }
+      }
+      for(let j=0;j<tareasDeleted.childElementCount;j++){
+
+        if(todasTareas.childNodes[i].childNodes[3].isEqualNode(tareasDeleted.childNodes[j].childNodes[3])){
+
+          tareasDeleted.removeChild(tareasDeleted.childNodes[j]);
+
+        }
+      }
+
+      todasTareas.removeChild(todasTareas.childNodes[i]);
+      listaTareas.splice(i,1);
+      i--;
+    }
+}
+}
+  
+//Listeners, onClicks
 buttonAnadir.addEventListener("click", (event) => {
   event.preventDefault();
   anadirTarea();
@@ -255,4 +357,9 @@ buttonVaciarDone.addEventListener("click", (event) => {
 buttonVaciarDeleted.addEventListener("click", (event) => {
   event.preventDefault();
   vaciarLista(buttonVaciarDeleted);
+});
+
+buttonEliminar.addEventListener("click", (event) => {
+  event.preventDefault();
+  eliminarTarea();
 });

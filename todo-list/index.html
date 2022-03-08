@@ -18,6 +18,7 @@
             <span class="nombreTarea"></span>
             <span class="descripcionTarea"></span>
             <span class="prioridadTarea"></span>
+            <span class="estadoTarea"></span>
 
         </li>
 
@@ -48,10 +49,10 @@
 
                 <p>Elige el estado de la tarea</p>
                 <select id="estadoTareaAnadir">
-                    <option selected>created</option>
-                    <option>doing</option>
-                    <option>done</option>
-                    <option>deleted</option>
+                    <option selected>Created</option>
+                    <option>Doing</option>
+                    <option>Done</option>
+                    <option>Deleted</option>
                 </select>
                 <button id="anadirTarea">Añadir Tarea</button>
             </form>
@@ -66,7 +67,7 @@
                     <ul id="todasTareas"></ul>
                 </div>
 
-                <!-- <button id="eliminarTodo">Eliminar tarea</button> -->
+                <button id="eliminarTodo">Eliminar tarea</button>
                 <button id="vaciarTodo">Vaciar lista</button>
                 <!-- <button>Modificar tarea</button> -->
                 <button id="organizarPrioridad">Organizar por prioridad</button>

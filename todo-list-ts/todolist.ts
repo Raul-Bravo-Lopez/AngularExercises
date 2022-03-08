@@ -138,7 +138,7 @@ function getTareas() {
     descripcionTarea[0].textContent = Tareas[i].descripcion;
 
     let prioridadTarea = templateTarea2.getElementsByClassName("prioridadTarea");
-    prioridadTarea[0].textContent = Tareas[i].prioridad+" "+Tareas[i].estado;
+    prioridadTarea[0].textContent = Tareas[i].prioridad;
 
     todasTareas.appendChild(templateTarea2);
   }
