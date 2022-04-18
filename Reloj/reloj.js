@@ -44,7 +44,7 @@ function drawCircles(hora, minuto, segundo){
     ctx.fillStyle = "white";
     ctx.fill();	
 
-	ctx.rotate(radsegundo)
+	ctx.rotate(radsegundo);
 
 }
 
